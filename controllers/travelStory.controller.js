@@ -54,7 +54,7 @@ export const imageUpload = async (req, res, next) => {
     if (!req.file) {
       return next(errorHandler(400, "No image uploaded"));
     }
-    const imageUrl = `http://localhost:3000/uploads/${req.file.filename}`;
+    const imageUrl = `https://travelldairy-backend.onrender.com//uploads/${req.file.filename}`;
     res.status(201).json({ imageUrl });
   } catch (error) {
     next(error);
@@ -109,7 +109,7 @@ export const editTravelStory = async (req, res, next) => {
       next(errorHandler(404, "Travelstory not found"));
     }
     const placeholderImageUrl =
-      "http://localhost:3000/assets/PlaceHolderImage.jpeg";
+      "https://travelldairy-backend.onrender.com//assets/PlaceHolderImage.jpeg";
 
     travelStory.title = title;
     travelStory.story = story;
@@ -141,7 +141,7 @@ export const deleteTravelStory = async (req, res, next) => {
     await travelStory.deleteOne({ _id: id, userId: userId });
 
     //Check if the img is not a placeholder before deleting
-    const placeholderImageUrl = "http://localhost:3000/assets/PlaceHolderImage.jpeg"
+    const placeholderImageUrl = "https://travelldairy-backend.onrender.com//assets/PlaceHolderImage.jpeg"
     //Extract the filename from the imageUrl
     const imageUrl = travelStory.imageUrl;
 

@@ -47,10 +47,16 @@ export const signin = async(req,res,next)=>{
     const token = jwt.sign({id: validUser._id},process.env.JWT_SECRET)
     const {password: pass, ...rest} = validUser._doc
 
-    res.status(200).cookie("access_token",token,{
-      httpOnly: true,
-    })
-    .json(rest)
+  res
+  .status(200)
+  .cookie("access_token", token, {
+    httpOnly: true,
+    secure: true,        // REQUIRED for HTTPS
+    sameSite: "None",    // REQUIRED for cross-domain
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  })
+  .json(rest);
+
 
     }catch(error){
      next(error)
