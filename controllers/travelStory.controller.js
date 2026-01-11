@@ -54,7 +54,7 @@ export const imageUpload = async (req, res, next) => {
     if (!req.file) {
       return next(errorHandler(400, "No image uploaded"));
     }
-    const imageUrl = `https://travelldairy-backend.onrender.com//uploads/${req.file.filename}`;
+    const imageUrl = `https://travelldairy-backend.onrender.com/uploads/${req.file.filename}`;
     res.status(201).json({ imageUrl });
   } catch (error) {
     next(error);
